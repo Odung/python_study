@@ -87,3 +87,83 @@ h = i = [1, 2, 3]
 h[1] = 4
 print(i)
 # 답: [1, 4, 3]이 출력된다. a와 b 변수는 모두 동일한 [1, 2, 3]이라는 리스트 객체를 가리키고 있기 때문이다. 흠
+
+
+
+
+# 3장 연습문제
+'''Q1 다음 코드의 결괏값은 무엇일까?'''
+
+a = "Life is too short, you need python"
+
+if "wife" in a: print("wife")
+elif "python" in a and "you" not in a: print("python")
+elif "shirt" not in a: print("shirt")
+elif "need" in a: print("need")
+else: print("none")
+# shirt 출력
+
+
+'''Q2 while문을 사용해 1부터 1000까지의 자연수 중 3의 배수의 합을 구해보자'''
+number = 0
+number_list = []
+
+while True:
+    number += 3
+    if number >= 1000:
+        break
+    number_list += [number] # 이러면 999까지 걸림 순서가 중요!!
+
+print(sum(number_list)) # 오 내가짰지만 좀 잘 짠듯 풉킼
+
+# solution 코드(이게 더 고급진것같다 흑흑)
+# result = 0
+# i = 1
+# while i <= 1000:
+#     if i % 3 == 0: # 3으로 나누어 떨어지는 수는 3의 배수
+#         result += i
+#     i += 1
+#
+# print(result) # 166833 출력
+
+
+'''Q3 while문을 사용하여 다음과 같이 별(*)을 표시하는 프로그램을 작성해 보자.'''
+star = "*"
+
+while True:
+    print(star)
+    star += "*"
+    if len(star) > 5:
+        break
+
+
+'''Q4 for문을 사용해 1부터 100까지의 숫자를 출력해 보자.'''
+
+result = [i for i in range(1, 101)]
+print(result)
+
+
+'''Q5 A학급에 총 10명의학생이 있다. 이 학생들의 중간고사 점수는 다음과 같다. for문을 하용하여 A 학급의 평균 점수를 구해 보자.'''
+A_score = [70, 60, 55, 75, 95, 90, 80, 85, 100] # 굳이 for문을 이용하여 문제를 어렵게 풀어야 합니까?
+sum_A = 0
+for x in range(len(A_score)):
+    sum_A += A_score[x]
+# 아래는 solution 
+# for score in A:
+#     total += score   # A학급의 점수를 모두 더한다.
+
+avg_A = sum_A/len(A_score)
+print(avg_A)
+
+
+'''Q6 리스트 중에서 홀수에만 2를 곱하여 저장하는 다음 코드가 있다.
+numbers = [1, 2, 3, 4, 5]
+result = []
+for n in numbers:
+    if n % 2 == 1:
+        result.append(n*2)
+위 코드를 리스트 내포를 사용하여 표현해 보자.'''
+
+numbers = [1, 2, 3, 4, 5]
+result_q6 = [n*2 for n in numbers if n%2 == 1]
+print(result_q6)
