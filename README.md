@@ -5,4 +5,4 @@
 1. `git add .`
 1. `git commit -m "message~ talk to me goose"`
 1. `git push`
-1. 크하하 윤하차 혹시 천재?
+1. 크하하 윤하차 혹시 천재??

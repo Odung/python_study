@@ -148,7 +148,7 @@ A_score = [70, 60, 55, 75, 95, 90, 80, 85, 100] # 굳이 for문을 이용하여 
 sum_A = 0
 for x in range(len(A_score)):
     sum_A += A_score[x]
-# 아래는 solution 
+# 아래는 solution
 # for score in A:
 #     total += score   # A학급의 점수를 모두 더한다.
 
