@@ -13,9 +13,11 @@
 # Chapter 48 파일 열고 닫기 (open, close)
 # open(파일이름, 모드), 경로 정보가 없으면 프로그램 구동 디렉터리에서 파일을 찾음
 # filename.close(), 오픈한 파일 닫기
+# with open("filename", "r") as file
+# print(file.readline()) -> with open은 자동으로 close 해줌, readline은 첫줄만 읽어줌
 
 
-# Chapter 49 클래스 이해하기 (class)
+# Chapter 49 클래스 이해하기 (class) -> 거푸집이라고 이해
 class MyClass:
     var = '안녕하세요'
     def sayHello(self):
@@ -28,7 +30,7 @@ obj.sayHello() # MyClass의 sayHello 호출, 메소드를 호출할 경우에는
 
 
 # Chapter 50 클래스 멤버와 인스턴스 멤버 이해하기
-# 클래스 멤버: 쿨래스 메소드 바깥에서 선언, 인스턴스 멤버: 메소드 안에서 self와 함께 선언되는 변수
+# 클래스 멤버: 클래스 메소드 바깥에서 선언, 인스턴스 멤버: 메소드 안에서 self와 함께 선언되는 변수
 class MyClass():
     var = '안녕하세요!!'
     def sayHello(self):
@@ -103,3 +105,127 @@ print(obj.sub(1, 2))
 print(obj.multiply(3, 2)) # 6
 
 # 클래스 내용이 어렵습니당!!
+
+# 11/11 내용 추가
+
+# class 생성자 -> 클래스 실행
+
+class Slime: # -> slime 생성
+    def __init__(self): # -> constructor, class로 변수를 호출(찍어낼때)할때 무조건 실행됨
+        self.name = "slime"
+        self.hp = 100
+        self.attack = 5
+        self.defense = 3
+    def attacked(self, damage):
+        self.hp -= (damage - self.defense)
+    def __del__(self):
+        print("Dobby is free~!!")
+
+# self: class 자체를 가리킴, self.var는 무조건 class가 가지는 변수
+# class 변수에 접근할때는 self. 으로 접근해야함
+# 밖에서 호출할때는 self 생략 가능
+
+slime1 = Slime() # -> 슬라임을 찍어낸것임
+print("before attacked", slime1.hp)
+slime1.attacked(50)
+print("after attacked", slime1.hp)
+
+
+# class destructor 메모리에서 사라질 때
+del slime1 # -> 이거 없어도 코드 한번 다 돌면 메모리에서 지워짐
+# 파이썬에서 많이 쓰지는 않음~
+
+
+# Class 상속
+class Monster: # -> base class
+    def __init__(self):
+        self.name = None
+        self.hp = None
+        self.attack = None
+        self.defense = None
+    def attacked(self, damage):
+        self.hp -= (damage - self.defense)
+
+class Slime(Monster): # -> 자식 class
+    def __init__(self, hp=100):
+        super().__init__() # super는 부모 class를 끌고옴, Monster에 있는 생성자 실행해주세요~
+
+        self.name = 'slime'
+        self.hp = hp
+        self.attack = 5
+        self.defense = 3
+# slime은 Monster의 변수와 함수에 접근 가능
+
+class Stump(Monster):
+    def __init__(self):
+        super().__init__()
+        self.name = 'stump'
+        self.hp = 50
+        self.attack = 2
+        self.defense = 0
+
+slime1 = Slime()
+stump1 = Stump()
+
+print(slime1.hp, stump1.hp)
+
+slime1.attacked(20)
+stump1.attacked(20)
+
+print(slime1.hp, stump1.hp)
+
+king_slime = Slime(hp=1000)
+print(king_slime.hp)
+
+
+# Chapter 55 예외처리 이해하기(try~except)
+# error가 있을 수도 있는 상황에서 사용
+# error가 있으면 except 처리, 프로그램 중지되지 않고 넘어가서 계속 실행
+
+a = 4
+b = 2
+
+try:
+    print(a/b)
+except:
+    print("there is error!") # error가 있으면 출력
+else:
+    print("No error!") # try가 정상적으로 실행되면 출력, for~else와 똑같음
+
+print("talk to me, goose!")
+
+
+# Chapter finally
+# error가 있든 없든 무조건 실행
+
+
+# Chapter 무슨 에러
+c = 1
+d = 0
+
+try:
+    print(c/d)
+except Exception as event:
+    print(event) # 어떤 error인지 알 수 있음
+
+
+# 특정 error에만 관심이 있을 때
+
+try:
+    print(c/d)
+except ZeroDivisionError: # 0으로 나누는 에러가 있을때만 실행
+    print("hello")
+
+
+# import time
+# count = 1
+#
+# try:
+#     while True:
+#         print(count)
+#         count += 1
+#         time.sleep(0.5)
+# except KeyboardInterrupt: # ctrl+c
+#     print("Interrupt by idiot")
+
+print("hello")
