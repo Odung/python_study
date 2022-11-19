@@ -70,5 +70,6 @@ def XOR(x1, x2):
     s2 = OR(x1, x2)
     y = AND(s1, s2)
     return y
+# 이것이 바로 다층 퍼셉트론 !! 우와~~ 신기해용~~
 
 print(XOR(0, 0), XOR(0, 1), XOR(1, 0), XOR(1, 1))
