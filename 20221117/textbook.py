@@ -125,7 +125,7 @@ def getPrime2(n):
     ret = [2]
     if n == 1:
         print('2 이상의 정수를 입력하세요.')
-        ret = ['none']
+        ret = None
 
     if n == 2:
         return ret
